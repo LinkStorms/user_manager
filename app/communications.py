@@ -43,3 +43,13 @@ def delete_token(username, password, user_handler_url=get_user_handler_url()):
     payload = {"username": username, "password": password}
     response = requests.post(url, json=payload)
     return response.json()
+
+
+def add_service_token(user_id, service_name, service_token, user_handler_url=get_user_handler_url()):
+    """
+    Add a service token for a user.
+    """
+    url = f"{user_handler_url}/add_service_token"
+    payload = {"user_id": user_id, "service_name": service_name, "service_token": service_token}
+    response = requests.post(url, json=payload)
+    return response.json()

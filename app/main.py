@@ -9,6 +9,7 @@ from communications import (
     access_token,
     register,
     delete_token,
+    add_service_token,
 )
 
 
@@ -71,6 +72,16 @@ def register_endpoint():
     response = register(username, password, email)
     return response, response["code"]
 
+
+@app.route("/add_service_token", methods=["POST"])
+@is_authorized
+def add_service_token_endpoint():
+    user_id = getattr(request, "user_id", "")
+    service_name = request.json.get("service_name", "")
+    service_token = request.json.get("service_token", "")
+
+    response = add_service_token(user_id, service_name, service_token)
+    return response, response["code"]
 
 if __name__ == '__main__':
     app.run(host=HOST, port=PORT, debug=True)
