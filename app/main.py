@@ -1,9 +1,10 @@
 from functools import wraps
 
-from flask import Flask, json
+from flask import Flask, json, request
 from werkzeug.exceptions import HTTPException
 
 from settings import HOST, PORT
+from utilities import check_auth
 
 app = Flask(__name__)
 
