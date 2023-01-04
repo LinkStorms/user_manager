@@ -23,3 +23,13 @@ def access_token(username, password, user_handler_url=get_user_handler_url()):
     payload = {"username": username, "password": password}
     response = requests.post(url, json=payload)
     return response.json()
+
+
+def register(username, password, email, user_handler_url=get_user_handler_url()):
+    """
+    Register a new user.
+    """
+    url = f"{user_handler_url}/register"
+    payload = {"username": username, "password": password, "email": email}
+    response = requests.post(url, json=payload)
+    return response.json()

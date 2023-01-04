@@ -7,6 +7,7 @@ from settings import HOST, PORT
 from communications import (
     check_auth,
     access_token,
+    register,
 )
 
 
@@ -48,6 +49,16 @@ def access_token_endpoint():
     password = request.json.get("password", "")
 
     response = access_token(username, password)
+    return response, response["code"]
+
+
+@app.route("/register", methods=["POST"])
+def register_endpoint():
+    username = request.json.get("username", "")
+    password = request.json.get("password", "")
+    email = request.json.get("email", "")
+
+    response = register(username, password, email)
     return response, response["code"]
 
 
