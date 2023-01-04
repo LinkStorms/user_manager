@@ -8,6 +8,7 @@ from communications import (
     check_auth,
     access_token,
     register,
+    delete_token,
 )
 
 
@@ -49,6 +50,15 @@ def access_token_endpoint():
     password = request.json.get("password", "")
 
     response = access_token(username, password)
+    return response, response["code"]
+
+
+@app.route("/delete_token", methods=["POST"])
+def delete_token_endpoint():
+    username = request.json.get("username", "")
+    password = request.json.get("password", "")
+
+    response = delete_token(username, password)
     return response, response["code"]
 
 

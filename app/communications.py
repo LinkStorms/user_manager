@@ -33,3 +33,13 @@ def register(username, password, email, user_handler_url=get_user_handler_url())
     payload = {"username": username, "password": password, "email": email}
     response = requests.post(url, json=payload)
     return response.json()
+
+
+def delete_token(username, password, user_handler_url=get_user_handler_url()):
+    """
+    Delete a user's access token.
+    """
+    url = f"{user_handler_url}/delete_token"
+    payload = {"username": username, "password": password}
+    response = requests.post(url, json=payload)
+    return response.json()
