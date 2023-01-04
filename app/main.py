@@ -4,7 +4,11 @@ from flask import Flask, json, request
 from werkzeug.exceptions import HTTPException
 
 from settings import HOST, PORT
-from utilities import check_auth
+from communications import (
+    check_auth,
+    access_token,
+)
+
 
 app = Flask(__name__)
 
@@ -38,9 +42,13 @@ def handle_exception(e):
     return response
 
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+@app.route("/access_token", methods=["POST"])
+def access_token_endpoint():
+    username = request.json.get("username", "")
+    password = request.json.get("password", "")
+
+    response = access_token(username, password)
+    return response, response["code"]
 
 
 if __name__ == '__main__':
