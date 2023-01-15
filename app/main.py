@@ -59,6 +59,7 @@ def access_token_endpoint():
 
 
 @app.route("/delete_token", methods=["POST"])
+@swag_from("flasgger_docs/delete_token_endpoint.yml")
 def delete_token_endpoint():
     username = request.json.get("username", "")
     password = request.json.get("password", "")
