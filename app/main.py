@@ -2,6 +2,7 @@ from functools import wraps
 
 from flask import Flask, json, request
 from werkzeug.exceptions import HTTPException
+from flasgger import Swagger, swag_from
 
 from settings import HOST, PORT
 from communications import (
@@ -14,6 +15,8 @@ from communications import (
 
 
 app = Flask(__name__)
+
+Swagger(app)
 
 
 def is_authorized(f):
@@ -46,6 +49,7 @@ def handle_exception(e):
 
 
 @app.route("/access_token", methods=["POST"])
+@swag_from("flasgger_docs/access_token_endpoint.yml")
 def access_token_endpoint():
     username = request.json.get("username", "")
     password = request.json.get("password", "")
