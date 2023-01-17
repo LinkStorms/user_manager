@@ -13,10 +13,16 @@ from communications import (
     add_service_token,
 )
 
+template = {
+    "info":{
+        "title": "User Manager",
+        "description": "User manager for user register, user login, token validation and token deletion"
+    }
+}
 
 app = Flask(__name__)
 
-Swagger(app)
+Swagger(app, template=template)
 
 
 def is_authorized(f):
