@@ -2,6 +2,12 @@
 This service is handling the registration and login of users, and the creation
 of access token for authentication.
 
+## Service Requirements
+This service is using the
+[`user_handler`](https://github.com/LinkStorms/user_handler) service.
+Therefore, you need to run the `user_handler` service before running this
+service.
+
 ## Managing the Environment and Dependencies
 First install `virtualenv` with pip.
 ```bash
